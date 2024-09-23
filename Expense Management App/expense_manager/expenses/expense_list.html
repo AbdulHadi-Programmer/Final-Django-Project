@@ -1,0 +1,10 @@
+<h1>Expense List</h1>
+<a href="{% url 'add_expense' %}">Add New Expense</a>
+<ul>
+    {% for expense in expenses %}
+        <li>{{ expense.date }} - {{ expense.title }}: ${{ expense.amount }} ({{ expense.category }}) 
+            <a href="{% url 'edit_expense' expense.pk %}">Edit</a> | 
+            <a href="{% url 'delete_expense' expense.pk %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
