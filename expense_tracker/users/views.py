@@ -4,10 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.hashers import make_password  # To hash the password
 from django.contrib import messages
 from .models import User
-
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Expense
 from .forms import ExpenseForm
+
 
 # List of expenses
 def expense_list(request):
@@ -42,9 +42,6 @@ def edit_expense(request, pk):
 
     return render(request, 'edit_expense.html', {'form': form})
 
-
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Expense
 
 # Delete an expense
 def delete_expense(request, pk):
