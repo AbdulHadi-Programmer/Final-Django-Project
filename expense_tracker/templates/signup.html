@@ -1,139 +1,28 @@
-{% load static %}
+<!-- templates/signup.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <link rel="stylesheet" href="{% static 'signup.css' %}">
-<style>
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7f6;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-form {
-    background-color: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Form Labels and Inputs */
-label {
-    display: block;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 5px;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-input:focus {
-    border-color: #00C2D1;
-    outline: none;
-}
-
-/* Button Styles */
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #00C2D1;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #00a5b5;
-}
-
-/* Login Redirect */
-p {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #555;
-}
-
-a {
-    color: #00C2D1;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    form {
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    button {
-        font-size: 16px;
-    }
-}
-</style>
-
+    <title>Sign Up</title>
 </head>
 <body>
-    <form method="POST" action="{% url 'signup' %}">
+    <h2>Sign Up</h2>
+    <form method="post">
         {% csrf_token %}
-
-        <h1>Signup</h1>
-
-        <label for="1">Username</label>
-        <input type="text" name="username" id="1" required>
-        <br>
-        <br>
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br>
         
-        <label for="2">Email</label>
-        <input type="email" name="email" id="2" required>
-        <br>
-        <br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
         
-        <label for="3">Password</label>
-        <input type="password" name="password" id="3" required>
-        <br>
-        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
         
-        <button type="Submit">Signup</button>
-        <br>
-        
-        <p>Already have an account <a href="{% url 'login' %}">Login</a></p>
-        
+        <button type="submit">Sign Up</button>
     </form>
+    
+    <a href="{% url 'login' %}">Already have an account? Login here</a>
 </body>
 </html>

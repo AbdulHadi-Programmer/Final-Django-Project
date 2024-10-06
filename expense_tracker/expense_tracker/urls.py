@@ -1,8 +1,7 @@
-"""
-URL configuration for expense_tracker project.
+"""expense_tracker URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
+    https://docs.djangoproject.com/en/4.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -19,6 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),      # Use a prefix for the users app
-    path('expenses/', include('expenses.urls')), # Use a different prefix for the expenses app
+    path('', include('users.urls')),    
 ]

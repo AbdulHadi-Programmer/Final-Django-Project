@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F9F9F9;
+            color: #0A1045;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Centers content horizontally */
+            padding-top: 50px; /* Adds space from the top */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px; /* Additional spacing from the top */
+        }
+
+        h2 {
+            color: #00C2D1;
+            text-align: center;
+        }
+
+        a {
+            color: #ED33B9;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #F9E900;
+            color: #0A1045;
+            padding: 15px;
+        }
+
+        td {
+            padding: 12px;
+            background-color: #FFFFFF;
+        }
+
+        th, td {
+            border: 1px solid #00C2D1;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F6AF65;
+        }
+
+        .action-link {
+            background-color: #00C2D1;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .action-link:hover {
+            background-color: #0A1045;
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            th {
+                display: none;
+            }
+
+            td {
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 45%;
+                padding-left: 10px;
+                font-weight: bold;
+                text-align: left;
+                color: #0A1045;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Expense List</h2>
+        <a href="{% url 'add_expense' %}">Add New Expense</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses %}
+                    <tr>
+                        <td data-label="Title">{{ expense.title }}</td>
+                        <td data-label="Amount">{{ expense.amount }}</td>
+                        <td data-label="Category">{{ expense.get_category_display }}</td>
+                        <td data-label="Date">{{ expense.date }}</td>
+                        <td data-label="Description">{{ expense.description }}</td>
+                        <td data-label="Actions">
+                            <a href="{% url 'edit_expense' expense.pk %}" class="action-link">Edit</a> 
+                            |
+                            <a href="{% url 'delete_expense' expense.pk %}" class="action-link">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">No expenses found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
